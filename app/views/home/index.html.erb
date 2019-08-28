@@ -7,10 +7,11 @@
   <div class="card">
     <ul id="category-<%= category.id %>">
       <% category.tasks.each do |task|  %>
-      <li>
+      <li id="task-<%= task.id %>">
         <%= task.title  %>
         <% unless task.deadline.nil? %>
           , to read: <%= task.deadline.strftime('%D')  %>
+          <%= link_to image_tag("24px.svg", border: 0), destroy_task_path(task), method: :delete %>
         <% end %>
       </li>
       <% end %>
@@ -19,7 +20,6 @@
   <% end %>
   </ul>
 </div>
-
 <div class="container">
   <div class="row">
     <% @tasks.each do |task|  %>
